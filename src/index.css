@@ -1,0 +1,562 @@
+/* =========================================
+   AUREON Design System - Global Styles
+   Vibe: Whispered Luxury, Clinical Precision
+   ========================================= */
+
+/* Google Fonts - Must be first */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+/* Tailwind CSS */
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* =========================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ========================================= */
+:root {
+  /* Brand Colors */
+  --color-midnight: #0A0A0A;
+  --color-slate-dark: #020617;
+  --color-porcelain: #FAFAF9;
+  --color-muted: #94A3B8;
+  --color-gold: #C5A059;
+  --color-maroon: #7F1D1D;
+
+  /* Typography */
+  --font-display: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', 'Manrope', system-ui, sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(3rem, 8vw, 8rem);
+
+  /* Transitions */
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-heavy: cubic-bezier(0.25, 1, 0.5, 1);
+  /* Silk smooth heavy lift */
+}
+
+/* =========================================
+   BASE STYLES
+   ========================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+body {
+  background-color: var(--color-midnight);
+  color: var(--color-porcelain);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Deep fabric feel background */
+  background: linear-gradient(180deg, #050505 0%, #000000 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   NOISE TEXTURE OVERLAY
+   Creates subtle grain to avoid flat digital look
+   ========================================= */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  /* 2% Opacity as per Onyx Void Directive */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* =========================================
+   TYPOGRAPHY SYSTEM
+   ========================================= */
+
+/* Headings - Cinzel / Playfair Display */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  /* Increased tracking for elegance */
+  color: var(--color-porcelain);
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 500;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+/* Body text - Manrope */
+p,
+span,
+li,
+a {
+  font-family: var(--font-body);
+}
+
+p {
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+/* =========================================
+   GLASSMORPHISM UTILITIES (DARK MODE)
+   ========================================= */
+.glass {
+  background: rgba(15, 23, 42, 0.5);
+  /* Midnight Obsidian base */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.1);
+}
+
+.glass-light {
+  background: rgba(250, 250, 249, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 250, 249, 0.05);
+}
+
+.glass-gold {
+  background: rgba(197, 160, 89, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+/* =========================================
+   MIDNIGHT ELEGANCE — LIGHT MODE UTILITIES
+   For Clinical Clean sections
+   ========================================= */
+
+/* Section Backgrounds */
+.section-light {
+  --section-bg: #FAFAF9;
+  --section-text: #1C1917;
+  --section-muted: #57534E;
+  --section-accent: #A08040;
+  background-color: var(--section-bg);
+  color: var(--section-text);
+}
+
+.section-light h1,
+.section-light h2,
+.section-light h3,
+.section-light h4 {
+  color: var(--section-text);
+}
+
+.section-dark {
+  --section-bg: #050505;
+  --section-text: #FAFAF9;
+  --section-muted: #94A3B8;
+  --section-accent: #C5A059;
+  background-color: var(--section-bg);
+  color: var(--section-text);
+}
+
+/* Glass for Light Backgrounds - Premium frosted effect */
+.glass-on-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.glass-gold-on-light {
+  background: rgba(197, 160, 89, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  box-shadow: 0 4px 30px rgba(197, 160, 89, 0.1);
+}
+
+/* Card Styles for Light Sections */
+.card-light {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.03),
+    0 12px 32px rgba(0, 0, 0, 0.02);
+}
+
+.card-light:hover {
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.05),
+    0 16px 48px rgba(0, 0, 0, 0.04);
+}
+
+.card-dark-elevated {
+  background: linear-gradient(180deg, #0d0b09 0%, #060504 100%);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(197, 160, 89, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION TRANSITIONS — Smooth Dark-to-Light Gradients
+   ═══════════════════════════════════════════════════════════════ */
+
+.gradient-dark-to-light {
+  background: linear-gradient(to bottom,
+      #050505 0%,
+      #0a0a0a 10%,
+      #1a1917 25%,
+      #3d3a36 40%,
+      #78716c 55%,
+      #a8a29e 70%,
+      #d6d3d1 85%,
+      #FAFAF9 100%);
+}
+
+.gradient-light-to-dark {
+  background: linear-gradient(to bottom,
+      #FAFAF9 0%,
+      #d6d3d1 15%,
+      #a8a29e 30%,
+      #78716c 45%,
+      #3d3a36 60%,
+      #1a1917 75%,
+      #0a0a0a 90%,
+      #050505 100%);
+}
+
+/* Shorter transition for section breaks */
+.transition-dark-to-light {
+  height: 120px;
+  background: linear-gradient(to bottom, #050505 0%, #FAFAF9 100%);
+}
+
+.transition-light-to-dark {
+  height: 120px;
+  background: linear-gradient(to bottom, #FAFAF9 0%, #050505 100%);
+}
+
+/* =========================================
+   GOLD ACCENT UTILITIES
+   ========================================= */
+.text-gold {
+  color: var(--color-gold);
+}
+
+.border-gold {
+  border-color: var(--color-gold);
+}
+
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+}
+
+/* =========================================
+   BUTTON STYLES (VELVET BUTTON)
+   ========================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  /* py-4, px-8 */
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  /* Smaller font size as per directive */
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  /* Widely spaced */
+  text-transform: uppercase;
+  color: var(--color-midnight);
+  background: var(--color-gold);
+  border: none;
+  border-radius: 4px;
+  /* rounded-md as per directive */
+  cursor: pointer;
+  transition: all 0.5s var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.25);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  background: transparent;
+  border: 1px solid var(--color-gold);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s var(--transition-smooth);
+}
+
+.btn-outline:hover {
+  background: rgba(197, 160, 89, 0.1);
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
+}
+
+/* =========================================
+   LINK STYLES
+   ========================================= */
+a {
+  color: var(--color-porcelain);
+  text-decoration: none;
+  transition: color 0.3s var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+/* =========================================
+   SCROLLBAR STYLING
+   ========================================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-slate-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 160, 89, 0.5);
+}
+
+/* =========================================
+   SELECTION STYLING
+   ========================================= */
+::selection {
+  background: rgba(197, 160, 89, 0.3);
+  color: var(--color-porcelain);
+}
+
+/* =========================================
+   FOCUS STATES (Accessibility)
+   ========================================= */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   UTILITY ANIMATIONS
+   ========================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Stagger children animations */
+.stagger-children>* {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.stagger-children>*:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-children>*:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.stagger-children>*:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.stagger-children>*:nth-child(4) {
+  animation-delay: 0.7s;
+}
+
+
+@keyframes subtle-zoom {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-subtle-zoom {
+  animation: subtle-zoom 20s infinite alternate linear;
+}
+
+/* =========================================
+   HERO SECTION UTILITIES
+   ========================================= */
+.hero-image-mask {
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 60%, transparent 100%);
+}
+
+.hero-vignette {
+  background: radial-gradient(circle at bottom left, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0.95) 20%, rgba(10, 10, 10, 0.8) 40%, transparent 80%),
+    linear-gradient(to top, #0A0A0A 0%, #0A0A0A 15%, transparent 50%);
+}
+
+/* =========================================
+   DIAGNOSTIC FORENSIC UTILITIES
+   ========================================= */
+@keyframes clinical-pulse {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.animate-clinical-pulse {
+  animation: clinical-pulse 4s ease-in-out infinite;
+}
+
+.diagnostic-overlay {
+  background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 10, 0.4) 40%, rgba(10, 10, 10, 0.9) 100%);
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-2px, -2px);
+  }
+
+  10% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(2px, 2px);
+  }
+
+  20% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-2px, -2px);
+  }
+
+  30% {
+    clip-path: inset(10% 0 85% 0);
+    transform: translate(2px, 2px);
+  }
+
+  40% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-2px, 2px);
+  }
+
+  50% {
+    clip-path: inset(30% 0 50% 0);
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+.animate-glitch {
+  animation: glitch 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
